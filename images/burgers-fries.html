@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burgers &amp; Fries — Murshid Chay Cafe</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brandmark" href="index.html">
+      <svg viewBox="0 0 48 48" fill="none"><path d="M14 20c0-6 4-11 10-11s10 5 10 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M11 20h26l-2.4 17.5A4 4 0 0 1 30.6 41H17.4a4 4 0 0 1-4-3.5L11 20z" fill="var(--maroon)"/><path d="M35 23c3 0 5.5 2 5.5 5s-2.5 5-5.5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <div>
+        <div class="brand-name">Murshid Chay Cafe</div>
+        <div class="brand-sub">TEA CAFE &amp; FAST FOOD</div>
+      </div>
+    </a>
+    <nav class="catnav">
+      <a href="index.html">Home</a>
+      <a href="burgers-fries.html" class="active">Burgers &amp; Fries</a>
+      <a href="rolls-shawarma.html">Rolls &amp; Shawarma</a>
+      <a href="pasta.html">Pasta</a>
+      <a href="pizza.html">Pizza</a>
+      <a href="deals.html">Special Deals</a>
+      <a href="chai-drinks.html">Chai &amp; Drinks</a>
+      <a href="icecream.html">Ice Cream</a>
+    </nav>
+    <div class="header-cta">
+      <button class="navtoggle" id="navToggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div style="position:relative;">
+        <button class="btn btn-ghost" id="callBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg><span>Call</span></button>
+        <div class="popover" id="callPopover">
+          <a href="tel:03005760395"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg><span class="pop-label">0300-5760395<small>Order Line 1 &middot; WhatsApp bhi</small></span></a>
+          <a href="tel:03000760395"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg><span class="pop-label">0300-0760395<small>Order Line 2</small></span></a>
+        </div>
+      </div>
+      <a class="btn btn-maroon js-wa-generic" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.3A9.9 9.9 0 0 0 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/><path d="M16.6 13.6c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5s-.6-1.5-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/></svg>Order</a>
+    </div>
+  </div>
+  <div class="mobilenav" id="mobileNav">
+    <a href="index.html">Home</a>
+      <a href="burgers-fries.html" class="active">Burgers &amp; Fries</a>
+      <a href="rolls-shawarma.html">Rolls &amp; Shawarma</a>
+      <a href="pasta.html">Pasta</a>
+      <a href="pizza.html">Pizza</a>
+      <a href="deals.html">Special Deals</a>
+      <a href="chai-drinks.html">Chai &amp; Drinks</a>
+      <a href="icecream.html">Ice Cream</a>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="kicker">FAST FOOD</span>
+      <h1>Burgers, Fries &amp; More</h1>
+      <p>Zinger, shami, grilled &mdash; sab kuch fresh banaya jata hai order pe.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-maroon js-wa-generic" href="#" target="_blank" rel="noopener">Order Karein</a>
+        <a class="btn btn-ghost" href="#items">Neeche Dekhein</a>
+      </div>
+    </div>
+    <img class="hero-img" src="images/burger-hero.jpg" alt="Burgers, Fries &amp; More">
+  </div>
+</div>
+<div id="items"></div><section class="content">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker" style="color:var(--maroon);font-size:12.5px;letter-spacing:.12em;font-weight:700;">FAST FOOD</span>
+      <h2 style="font-size:clamp(26px,4vw,34px);margin-top:8px;">Burgers &amp; Fried</h2>
+      <p>Har item pe tap karein, seedha order tayyar ho jayega.</p>
+    </div>
+    <div class="grid">
+    <div class="food-card" data-order-name="Zinger Burger" data-price="350"><div class="food-name">Zinger Burger</div><div class="food-price nums">Rs. 350</div></div>
+    <div class="food-card" data-order-name="Zinger Cheese Burger" data-price="400"><div class="food-name">Zinger Cheese Burger</div><div class="food-price nums">Rs. 400</div></div>
+    <div class="food-card" data-order-name="Grilled Burger" data-price="380"><div class="food-name">Grilled Burger</div><div class="food-price nums">Rs. 380</div></div>
+    <div class="food-card" data-order-name="Shami Burger" data-price="150"><div class="food-name">Shami Burger</div><div class="food-price nums">Rs. 150</div></div>
+    <div class="food-card" data-order-name="Shami Double Egg Burger" data-price="200"><div class="food-name">Shami Double Egg Burger</div><div class="food-price nums">Rs. 200</div></div>
+    <div class="food-card" data-order-name="Chicken Boti Burger" data-price="220"><div class="food-name">Chicken Boti Burger</div><div class="food-price nums">Rs. 220</div></div>
+    <div class="food-card" data-order-name="Leg Piece" data-price="350"><div class="food-name">Leg Piece</div><div class="food-price nums">Rs. 350</div></div>
+    <div class="food-card" data-order-name="Chest Piece" data-price="380"><div class="food-name">Chest Piece</div><div class="food-price nums">Rs. 380</div></div>
+    <div class="food-card" data-order-name="10 Piece Nuggets" data-price="600"><div class="food-name">10 Piece Nuggets</div><div class="food-price nums">Rs. 600</div></div>
+    <div class="food-card" data-order-name="10 Piece Hot Wings" data-price="600"><div class="food-name">10 Piece Hot Wings</div><div class="food-price nums">Rs. 600</div></div>
+    <div class="food-card" data-order-name="Fries (Regular)" data-price="200"><div class="food-name">Fries (Regular)</div><div class="food-price nums">Rs. 200</div></div>
+    <div class="food-card" data-order-name="Fries (Large)" data-price="300"><div class="food-name">Fries (Large)</div><div class="food-price nums">Rs. 300</div></div>
+  </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap footer-grid">
+    <div class="foot-brand">
+      <div class="brand-name display" style="font-size:22px;">Murshid Chay Cafe</div>
+      <p>Fast Food, Pizza Corner, Fresh Shake &amp; Ice Cream Bar. Dine in &amp; take away, ya ghar baithe order karein.</p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <a href="tel:03005760395"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg> 0300-5760395</a>
+      <a href="tel:03000760395"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg> 0300-0760395</a>
+      <a class="js-wa-generic" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.3A9.9 9.9 0 0 0 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/><path d="M16.6 13.6c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5s-.6-1.5-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/></svg> WhatsApp par order karein</a>
+    </div>
+    <div>
+      <h3>Location &amp; Timing</h3>
+      <p style="display:flex;gap:9px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-7.4 7-12A7 7 0 0 0 5 10c0 4.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> Imam Di Tibbi Road, Karor</p>
+      <p style="display:flex;gap:9px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 10:00 AM &ndash; 12:00 AM, roz</p>
+      <p style="display:flex;gap:9px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M3 18V8h9l5 5h4v5"/></svg> Free delivery 3 Km &middot; Minimum order Rs. 700</p>
+    </div>
+  </div>
+  <div class="foot-bottom wrap">Murshid Chay Cafe &mdash; Tea Cafe &amp; Fast Food</div>
+</footer>
+
+<button class="float-wa js-wa-generic" id="floatWaBtn" aria-label="WhatsApp par order karein"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.3A9.9 9.9 0 0 0 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/><path d="M16.6 13.6c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5s-.6-1.5-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/></svg></button>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Band karein"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="modal-eyebrow">ORDER</div>
+    <h3 id="modalName">Item Name</h3>
+    <div class="modal-options" id="modalOptions"></div>
+    <a class="btn btn-maroon" id="modalOrderBtn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.3A9.9 9.9 0 0 0 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/><path d="M16.6 13.6c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5s-.6-1.5-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/></svg>WhatsApp par Order Karein</a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
