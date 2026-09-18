@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Murshid Chay Cafe - Order Menu</title>
+<style>
+  :root{
+    --bg:#141414;
+    --panel:#1c1c1c;
+    --yellow:#ffd400;
+    --red:#e63946;
+    --white:#f5f5f5;
+    --green:#25D366;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', Tahoma, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--white);
+    padding-bottom:110px;
+  }
+  header{
+    text-align:center;
+    padding:22px 14px 16px;
+    background:linear-gradient(180deg,#000 0%,#1c1c1c 100%);
+    border-bottom:3px solid var(--yellow);
+  }
+  header img.logo{
+    width:90px;height:90px;border-radius:50%;
+    border:3px solid var(--yellow);
+    object-fit:cover;
+    margin-bottom:8px;
+  }
+  header h1{
+    color:var(--yellow);
+    font-size:2.1em;
+    margin:6px 0 2px;
+    letter-spacing:1px;
+    text-shadow:0 0 8px rgba(255,212,0,0.4);
+  }
+  header .tagline{color:var(--white);font-size:1em;opacity:.9;margin:2px 0;}
+  header .info{
+    margin-top:10px;
+    font-size:.9em;
+    color:#ccc;
+  }
+  header .info b{color:var(--yellow);}
+  .banner{
+    max-width:100%;
+    display:block;
+    margin:0 auto;
+  }
+  .banner-wrap{
+    max-width:1000px;
+    margin:18px auto;
+    padding:0 12px;
+  }
+  .banner-wrap img{
+    width:100%;
+    border-radius:10px;
+    border:2px solid #333;
+    box-shadow:0 4px 18px rgba(0,0,0,.5);
+  }
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:#0d0d0d;
+    display:flex;
+    overflow-x:auto;
+    border-bottom:2px solid var(--yellow);
+    padding:6px 6px;
+    gap:6px;
+  }
+  nav a{
+    flex:0 0 auto;
+    color:var(--yellow);
+    text-decoration:none;
+    font-weight:600;
+    font-size:.85em;
+    padding:8px 14px;
+    border:1px solid var(--yellow);
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  nav a:active, nav a:hover{background:var(--yellow);color:#111;}
+  main{max-width:1000px;margin:0 auto;padding:10px 12px;}
+  section.category{margin-top:34px;}
+  section.category h2{
+    color:#111;
+    background:var(--yellow);
+    display:inline-block;
+    padding:6px 22px;
+    border-radius:6px;
+    font-size:1.3em;
+    margin-bottom:14px;
+    box-shadow:0 2px 6px rgba(0,0,0,.4);
+  }
+  .subnote{color:var(--red);font-weight:600;margin:6px 0 14px;font-size:.9em;}
+  .item-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:var(--panel);
+    border:1px solid #2c2c2c;
+    border-left:4px solid var(--yellow);
+    border-radius:8px;
+    padding:12px 14px;
+    margin-bottom:8px;
+    transition:.15s;
+  }
+  .item-row.checked{
+    border-left-color:var(--green);
+    background:#20261f;
+  }
+  .item-left{display:flex;align-items:center;gap:12px;flex:1;}
+  .item-left input[type=checkbox]{
+    width:22px;height:22px;
+    accent-color:var(--green);
+    flex-shrink:0;
+    cursor:pointer;
+  }
+  .item-name{font-weight:600;font-size:1em;color:var(--white);}
+  .item-name small{display:block;color:#aaa;font-weight:400;font-size:.82em;margin-top:2px;}
+  .item-price{
+    color:var(--yellow);
+    font-weight:700;
+    font-size:1.05em;
+    white-space:nowrap;
+    min-width:80px;
+    text-align:right;
+  }
+  .deal-desc{color:#bbb;font-size:.82em;margin-top:2px;line-height:1.3;}
+  .cart-bar{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    background:#0d0d0d;
+    border-top:3px solid var(--yellow);
+    padding:10px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    z-index:100;
+    box-shadow:0 -4px 14px rgba(0,0,0,.6);
+  }
+  .cart-info{color:var(--white);font-size:.95em;}
+  .cart-info b{color:var(--yellow);}
+  .cart-buttons{display:flex;gap:8px;}
+  .btn-clear{
+    background:#333;color:#ddd;border:1px solid #555;
+    padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85em;
+  }
+  .btn-order{
+    background:var(--green);
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:.95em;
+    cursor:pointer;
+    display:flex;align-items:center;gap:6px;
+  }
+  .btn-order:disabled{background:#555;cursor:not-allowed;}
+  footer{
+    text-align:center;
+    padding:20px 12px 130px;
+    color:#888;
+    font-size:.82em;
+  }
+  .whatsapp-icon{width:18px;height:18px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>MURSHID Chay Cafe</h1>
+  <div class="tagline">Fast Food · Pizza Corner · Fresh Shake &amp; Ice Cream Bar</div>
+  <div class="info">
+    📍 <b>Imam Di Tibbi Road, Karor</b> &nbsp;|&nbsp; ⏰ <b>10:00 AM – 12:00 AM</b><br>
+    📞 <b>0300-5760395</b> (WhatsApp) &nbsp;/&nbsp; 0300-0760395 &nbsp;|&nbsp; Minimum Order Rs.700 &nbsp;|&nbsp; Free Delivery in 3 Km
+  </div>
+</header>
+
+<nav>
+  <a href="#pizza">Pizza</a>
+  <a href="#limca">Limca / Chay</a>
+  <a href="#fastfood">Fast Food</a>
+  <a href="#pasta">Pasta</a>
+  <a href="#deals">Deals</a>
+</nav>
+
+<main>
+
+  <div class="banner-wrap">
+    <img class="banner" src="images/pizza-limca.jpg" alt="Pizza Flavors and Limca Menu">
+  </div>
+
+  <section class="category" id="pizza">
+    <h2>🍕 Pizza Flavors</h2>
+    <div class="subnote">Sizes: Small / Medium / Large / X-Large</div>
+    <div id="pizza-list"></div>
+    <div class="subnote" style="margin-top:18px;">Extra Topping (Chicken / Cheese): S-100 · M-150 · L-200 · XL-250</div>
+    <div id="topping-list"></div>
+  </section>
+
+  <section class="category" id="limca">
+    <h2>🥤 Limca Flavors</h2>
+    <div id="limca-list"></div>
+    <div class="subnote" style="margin-top:14px;">🫖 مٹکا چائے (Matka Chay)</div>
+    <div id="chay-list"></div>
+  </section>
+
+  <div class="banner-wrap">
+    <img class="banner" src="images/fastfood.jpg" alt="Fast Food Menu">
+  </div>
+
+  <section class="category" id="fastfood">
+    <h2>🍔 Fast Food</h2>
+    <div id="fastfood-list"></div>
+  </section>
+
+  <section class="category" id="pasta">
+    <h2>🍝 Loaded Fries &amp; Pasta</h2>
+    <div class="subnote">H = Half &nbsp; F = Full</div>
+    <div id="pasta-list"></div>
+  </section>
+
+  <div class="banner-wrap">
+    <img class="banner" src="images/deals.jpg" alt="Murshid Special Deals">
+  </div>
+
+  <section class="category" id="deals">
+    <h2>🔥 Murshid Special Deals</h2>
+    <div id="deals-list"></div>
+  </section>
+
+</main>
+
+<footer>
+  Tick the items you want, then tap "Send Order on WhatsApp" — your order goes straight to Murshid Chay Cafe.
+</footer>
+
+<div class="cart-bar">
+  <div class="cart-info"><b id="cart-count">0</b> items &nbsp;|&nbsp; Rs. <b id="cart-total">0</b></div>
+  <div class="cart-buttons">
+    <button class="btn-clear" onclick="clearCart()">Clear</button>
+    <button class="btn-order" id="orderBtn" onclick="sendOrder()" disabled>
+      <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="#fff"><path d="M17.6 6.3A8.7 8.7 0 0 0 12.1 4c-4.8 0-8.7 3.9-8.7 8.7 0 1.5.4 3 1.1 4.3L3.3 21l4.1-1.1a8.7 8.7 0 0 0 4.6 1.3h0c4.8 0 8.7-3.9 8.7-8.7 0-2.3-1-4.5-2.7-6.2zM12.1 19.6c-1.4 0-2.8-.4-4-1.1l-.3-.2-2.9.8.8-2.9-.2-.3a7.2 7.2 0 0 1-1.1-3.9c0-4 3.2-7.2 7.2-7.2 1.9 0 3.7.8 5.1 2.1a7.1 7.1 0 0 1 2.1 5.1c0 4-3.2 7.2-7.2 7.2zm4-5.4c-.2-.1-1.3-.6-1.5-.7-.2-.1-.3-.1-.5.1-.1.2-.5.7-.6.8-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1-.6-.6-1-1.3-1.2-1.5-.1-.2 0-.3.1-.4.1-.1.2-.2.3-.4.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.5-1.2-.7-1.6-.2-.4-.4-.4-.5-.4h-.4c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.1 1.6 2.4 3.8 3.4.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1z"/></svg>
+      Send Order on WhatsApp
+    </button>
+  </div>
+</div>
+
+<script>
+const WHATSAPP_NUMBER = "923005760395";
+
+const menu = {
+  pizza: [
+    ["Chicken Tikka - Small",600],["Chicken Tikka - Medium",1000],["Chicken Tikka - Large",1400],["Chicken Tikka - X-Large",2100],
+    ["Chicken Fajita - Small",600],["Chicken Fajita - Medium",1000],["Chicken Fajita - Large",1400],["Chicken Fajita - X-Large",2100],
+    ["Chicken Supreme - Small",600],["Chicken Supreme - Medium",1000],["Chicken Supreme - Large",1400],["Chicken Supreme - X-Large",2100],
+    ["Chicken BBQ - Small",600],["Chicken BBQ - Medium",1000],["Chicken BBQ - Large",1400],["Chicken BBQ - X-Large",2100],
+    ["Hot Spicy - Small",600],["Hot Spicy - Medium",1000],["Hot Spicy - Large",1400],["Hot Spicy - X-Large",2100],
+    ["Chicken Achari - Small",600],["Chicken Achari - Medium",1050],["Chicken Achari - Large",1450],["Chicken Achari - X-Large",2050],
+    ["Cheese Lover - Small",550],["Cheese Lover - Medium",1050],["Cheese Lover - Large",1450],["Cheese Lover - X-Large",2050],
+    ["Veggie Lover - Small",550],["Veggie Lover - Medium",900],["Veggie Lover - Large",1300],["Veggie Lover - X-Large",1900],
+    ["Lazania Pizza - Small",700],["Lazania Pizza - Medium",1200],["Lazania Pizza - Large",1700],["Lazania Pizza - X-Large",2500],
+    ["Malai Boti Pizza - Small",750],["Malai Boti Pizza - Medium",1250],["Malai Boti Pizza - Large",1750],["Malai Boti Pizza - X-Large",2500],
+    ["Behari Kabab Pizza - Small",750],["Behari Kabab Pizza - Medium",1250],["Behari Kabab Pizza - Large",1750],["Behari Kabab Pizza - X-Large",2500],
+    ["Crown Crust Pizza - Small",750],["Crown Crust Pizza - Medium",1250],["Crown Crust Pizza - Large",1750],["Crown Crust Pizza - X-Large",2500],
+    ["Crunchy Pizza - Small",750],["Crunchy Pizza - Medium",1250],["Crunchy Pizza - Large",1750],["Crunchy Pizza - X-Large",2500],
+    ["Murshid Special Pizza - Small",750],["Murshid Special Pizza - Medium",1350],["Murshid Special Pizza - Large",1600],["Murshid Special Pizza - X-Large",2400],
+    ["Cheeze Steak Pizza - Small",750],["Cheeze Steak Pizza - Medium",1350]
+  ],
+  topping: [
+    ["Extra Chicken Topping - Small",100],["Extra Chicken Topping - Medium",150],["Extra Chicken Topping - Large",200],["Extra Chicken Topping - X-Large",250],
+    ["Extra Cheese Topping - Small",100],["Extra Cheese Topping - Medium",150],["Extra Cheese Topping - Large",200],["Extra Cheese Topping - X-Large",250]
+  ],
+  limca: [
+    ["Blueberry Limca - Medium",80],["Blueberry Limca - Large",130],
+    ["Lychee Limca - Medium",80],["Lychee Limca - Large",130],
+    ["Alobukhara Limca - Medium",80],["Alobukhara Limca - Large",130],
+    ["Pine Apple Limca - Medium",80],["Pine Apple Limca - Large",130],
+    ["Immli Limca - Medium",80],["Immli Limca - Large",130],
+    ["Fanta Limca - Medium",80],["Fanta Limca - Large",130],
+    ["Classic Limca - Medium",80],["Classic Limca - Large",130],
+    ["Mintmargreta Limca - Medium",100],["Mintmargreta Limca - Large",170]
+  ],
+  chay: [
+    ["Matka Chay (Set of 2)",120]
+  ],
+  fastfood: [
+    ["Zinger Burger",350],
+    ["Zinger Cheese Burger",400],
+    ["Grilled Burger",380],
+    ["Shami Burger",150],
+    ["Shami Double Egg Burger",200],
+    ["Chicken Boti Burger",220],
+    ["Chicken Paratha Roll",270],
+    ["Zinger Paratha Roll",350],
+    ["Chicken Boti Shawarma - Small",170],
+    ["Chicken Boti Shawarma - Large",220],
+    ["Zinger Shawarma - Large",350],
+    ["Leg Piece",350],
+    ["Chest Piece",380],
+    ["10 Piece Nuggets",600],
+    ["10 Piece Hot Wings",600],
+    ["Fries - Regular",200],
+    ["Fries - Large",300]
+  ],
+  pasta: [
+    ["Loaded Fries - Half",400],["Loaded Fries - Full",600],
+    ["Creamy Crunchy Pasta - Half",450],["Creamy Crunchy Pasta - Full",700],
+    ["Malai Boti Pasta - Half",450],["Malai Boti Pasta - Full",700],
+    ["Chicken Pasta - Half",400],["Chicken Pasta - Full",600]
+  ],
+  deals: [
+    ["Deal 1", 560, "1 Zinger Burger, 1 Regular Fries, 1 Limca"],
+    ["Deal 2", 990, "1 Zinger Burger, 1 Zinger Paratha Roll, 1 Small Chicken Boti Shawarma, 2 Limca"],
+    ["Deal 3", 780, "1 Small Pizza, 1 Fries, 1 Regular Coke"],
+    ["Deal 4", 1180, "1 Small Pizza, 2 Chicken Paratha Roll, 1 Regular Coke"],
+    ["Deal 5", 1440, "1 Small Pizza, 2 Zinger Burger, 1 Litre Coke"],
+    ["Deal 6", 1850, "5 Zinger Burger, 1 Litre Coke"],
+    ["Deal 7", 1590, "1 Full Broast, 1 Litre Coke"],
+    ["Deal 8", 1280, "1 Medium Pizza, 1 Fries, 1 Litre Coke"],
+    ["Deal 9", 1580, "1 Medium Pizza, 1 Half Creamy Crunchy Pasta, 1 Litre Coke"],
+    ["Deal 10", 1100, "1 Half Creamy Crunchy Pasta, 3 Small Chicken Boti Shawarma, 1 Litre Coke"],
+    ["Deal 11", 3120, "1 Small Pizza, 1 Medium Pizza, 1 Large Pizza, 1.5 Litre Coke"],
+    ["Deal 12", 2550, "1 Large Pizza, 1 Medium Pizza, 1.5 Litre Coke"],
+    ["Deal 13", 1690, "1 Medium Pizza, 1 Small Pizza, 1 Litre Coke"],
+    ["Deal 14", 2890, "2 Large Pizza, 1.5 Litre Coke"],
+    ["Deal 15", 1820, "1 Large Pizza, 5 Nuggets, 1 Litre Coke"],
+    ["Deal 16", 1800, "1 Large Pizza, 5 Hot Wings, 1 Litre Coke"],
+    ["Deal 17", 4280, "3 Large Pizza, 2.25 Litre Coke"],
+    ["Deal 18", 3600, "1 X-Large Pizza, 1 Large Pizza, 2.25 Litre Coke"],
+    ["Mega Deal", 8100, "3 Large Pizza, 5 Zinger Burger, 1 Full Broast, 10 Hot Wings, 2 x 2.25 Litre Coke"]
+  ]
+};
+
+const cart = {}; // key -> {name, price, qty:1}
+
+function slug(s){return s.replace(/[^a-z0-9]/gi,'_');}
+
+function renderList(containerId, items, isDeal){
+  const container = document.getElementById(containerId);
+  items.forEach((it, idx) => {
+    const name = it[0], price = it[1], desc = isDeal ? it[2] : null;
+    const key = containerId + "_" + idx;
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.id = 'row_' + key;
+    row.innerHTML = `
+      <div class="item-left">
+        <input type="checkbox" id="chk_${key}" onchange="toggleItem('${key}', ${JSON.stringify(name).replace(/"/g,'&quot;')}, ${price})">
+        <div>
+          <div class="item-name">${name}</div>
+          ${desc ? `<div class="deal-desc">${desc}</div>` : ''}
+        </div>
+      </div>
+      <div class="item-price">Rs. ${price}</div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+renderList('pizza-list', menu.pizza);
+renderList('topping-list', menu.topping);
+renderList('limca-list', menu.limca);
+renderList('chay-list', menu.chay);
+renderList('fastfood-list', menu.fastfood);
+renderList('pasta-list', menu.pasta);
+renderList('deals-list', menu.deals, true);
+
+function toggleItem(key, name, price){
+  const checkbox = document.getElementById('chk_' + key);
+  const row = document.getElementById('row_' + key);
+  if(checkbox.checked){
+    cart[key] = {name, price};
+    row.classList.add('checked');
+  } else {
+    delete cart[key];
+    row.classList.remove('checked');
+  }
+  updateCartBar();
+}
+
+function updateCartBar(){
+  const keys = Object.keys(cart);
+  const count = keys.length;
+  const total = keys.reduce((sum,k)=> sum + cart[k].price, 0);
+  document.getElementById('cart-count').textContent = count;
+  document.getElementById('cart-total').textContent = total;
+  document.getElementById('orderBtn').disabled = count === 0;
+}
+
+function clearCart(){
+  Object.keys(cart).forEach(k => delete cart[k]);
+  document.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = false);
+  document.querySelectorAll('.item-row').forEach(r => r.classList.remove('checked'));
+  updateCartBar();
+}
+
+function sendOrder(){
+  const keys = Object.keys(cart);
+  if(keys.length === 0) return;
+  let msg = "Assalam-o-Alaikum! I want to order from Murshid Chay Cafe:\n\n";
+  let total = 0;
+  keys.forEach(k => {
+    msg += `- ${cart[k].name} : Rs. ${cart[k].price}\n`;
+    total += cart[k].price;
+  });
+  msg += `\nTotal: Rs. ${total}\n\nName: \nAddress: \nPhone: `;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
