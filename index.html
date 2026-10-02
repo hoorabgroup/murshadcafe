@@ -484,7 +484,9 @@ function itemOf(key){
   const [c,i,v] = key.split('-').map(Number);
   const it = MENU[c].items[i];
   const [vl,price] = it[1][v];
-  return {name:it[0].split('  ')[0], vl, price, v};
+  let name = it[0].split('  ')[0];
+  if(MENU[c].pizza && !/pizza/i.test(name)) name += ' Pizza';
+  return {name, vl, price, v};
 }
 function topOf(tk){
   const [k,t] = tk.split('|'); const base = itemOf(k);
@@ -698,16 +700,31 @@ $('send').onclick=()=>{
   if(!phone){ $('fphone').focus(); toast('Phone number likhein'); return; }
   if(orderType==='Delivery' && !addr){ $('faddr').focus(); toast('Address likhein'); return; }
   const {total,ask}=totals();
-  let m = `*Assalam-o-Alaikum! New Order – Murshid Chay Cafe*\n\n`;
-  let n=1;
-  for(const {name:nm,vl,price,q,top} of orderLines()){
-    if(top){ m += `    + ${nm} (${vl}) × ${q} = Rs. ${fmt(price*q)}\n`; continue; }
-    m += `${n++}. ${nm}${vl?' ('+vl+')':''} × ${q} = ${price==null?'price confirm karein':'Rs. '+fmt(price*q)}\n`;
-  }
-  m += `\n*Total: Rs. ${fmt(total)}*${ask?' + cake (price confirm)':''}\n`;
-  m += `\n*Order Type:* ${orderType}\n*Name:* ${name}\n*Phone:* ${phone}\n`;
-  if(orderType==='Delivery') m += `*Address:* ${addr}\n`;
-  if(note) m += `*Note:* ${note}\n`;
+  const LINE = '━━━━━━━━━━━━━━━━━━';
+  const GAP = '\n\n\n';            // poori 2 khaali lines har item ke baad
+  let m = `*🧾 NEW ORDER*\n*MURSHID CHAY CAFE*\n${LINE}\n\n`;
+  m += `*Order Type:*  ${orderType==='Delivery'?'🛵 DELIVERY':'🥡 TAKE AWAY'}\n${LINE}`;
+  m += GAP;
+  let n=1, buf='';
+  orderLines().forEach(({name:nm,vl,price,q,top})=>{
+    if(top){
+      buf += `\n\n   ➕ ${nm}\n   Qty: ${q}  ×  Rs. ${fmt(price)}  =  Rs. ${fmt(price*q)}`;
+      return;
+    }
+    if(buf){ m += buf + GAP; }
+    buf = `*${n++}.  ${nm.toUpperCase()}*`;
+    if(vl) buf += `\n   Size:  ${vl}`;
+    buf += `\n   Qty:  *${q}*`;
+    buf += price==null ? `\n   Price:  shop se confirm karein` : `\n   Rs. ${fmt(price)}  ×  ${q}  =  *Rs. ${fmt(price*q)}*`;
+  });
+  m += buf + GAP;
+  const {count}=totals();
+  m += `${LINE}\n*Total Items:*  ${count}\n\n*TOTAL BILL:  Rs. ${fmt(total)}*${ask?'  + cake (price confirm)':''}\n${LINE}`;
+  m += GAP;
+  m += `*👤 Name:*  ${name}\n\n*📞 Phone:*  ${phone}`;
+  if(orderType==='Delivery') m += `\n\n*📍 Address:*  ${addr}`;
+  if(note) m += `\n\n*📝 Note:*  ${note}`;
+  m += `\n\n${LINE}`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(m)}`,'_blank');
 };
 
